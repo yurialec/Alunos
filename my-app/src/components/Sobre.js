@@ -1,6 +1,6 @@
-function Sobre(){
-    return(
-        <div>
+function Sobre() {
+    return (
+        <div className='container'>
             <h1>Sobre</h1>
         </div>
     )
