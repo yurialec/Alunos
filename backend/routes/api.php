@@ -11,5 +11,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('listar_alunos', [AlunoController::class, 'index']);
 Route::get('dados_aluno/{id}', [AlunoController::class, 'show']);
 Route::post('cadastrar_aluno', [AlunoController::class, 'store']);
-Route::put('aluno/{id}', [AlunoController::class, 'update']);
+Route::put('editar_aluno/{id}', [AlunoController::class, 'update']);
 Route::delete('apagar_aluno/{id}', [AlunoController::class,'destroy']);
