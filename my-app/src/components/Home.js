@@ -42,6 +42,7 @@ class Home extends React.Component {
                         <th>#</th>
                         <th>Nome</th>
                         <th>Curso</th>
+                        <th>E-mail</th>
                         <th>Ações</th>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@ class Home extends React.Component {
                                 <td>{aluno.id}</td>
                                 <td>{aluno.name}</td>
                                 <td>{aluno.course}</td>
+                                <td>{aluno.email}</td>
                                 <td><Button variant="warning">Editar</Button> <Button variant="danger" onClick={() => this.deletarAluno(aluno.id)}>Excluir</Button></td>
                             </tr>
                         )}

@@ -1,5 +1,5 @@
 import Home from './components/Home';
-import Alunos from './components/Alunos';
+import {Alunos} from './components/Alunos';
 import Sobre from './components/Sobre';
 import { BrowserRouter, Routes, Link, Route } from 'react-router-dom'
 import { Nav } from 'react-bootstrap';
