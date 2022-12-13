@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Button, Form } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Alunos = () => {
 
@@ -19,6 +19,8 @@ export const Alunos = () => {
     const valorInput = e => setAluno({
         ...aluno, [e.target.name]: e.target.value
     });
+
+    let navigate = useNavigate();
 
     const cadastrarAluno = async (e) => {
         // console.log("aluno", aluno);
@@ -39,7 +41,7 @@ export const Alunos = () => {
             .then(resposta => {
                 // console.log("resposta", resposta)
                 if (resposta.ok) {
-                    alert("Aluno cadastrado");
+                    navigate('/');
                 } else {
                     alert("Erro ao cadastrar aluno");
                 }
@@ -50,7 +52,7 @@ export const Alunos = () => {
     return (
         <div className='container'>
             <h1>Cadastrar Aluno</h1>
-            <form onSubmit={cadastrarAluno}>
+            <Form onSubmit={cadastrarAluno}>
                 <Form.Group className="mb-3">
                     <Form.Control name="name" id="name" type="text" placeholder="Nome Completo" onChange={valorInput} />
                 </Form.Group>
@@ -63,10 +65,10 @@ export const Alunos = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="text" hidden value={"1"} onChange={valorInput} />
                 </Form.Group>
-                <button variant="primary" type="submit">
+                <Button variant="primary" type="submit">
                     Cadastrar
-                </button>
-            </form>
+                </Button>
+            </Form>
         </div>
     )
 }
