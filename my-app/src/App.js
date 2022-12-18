@@ -1,6 +1,7 @@
 import Home from './components/Home';
 import {Alunos} from './components/Alunos';
 import Sobre from './components/Sobre';
+import {Editar} from './components/Editar';
 import { BrowserRouter, Routes, Link, Route } from 'react-router-dom'
 import { Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,6 +21,7 @@ function App() {
           <Route exact path='/' element={<Home/>} ></Route>
           <Route path='/alunos' element={<Alunos/>}></Route>
           <Route path='/sobre' element={<Sobre/>}></Route>
+          <Route path='/editar_aluno/:id' element={<Editar/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
