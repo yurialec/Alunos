@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
+import { Link } from "react-router-dom";
 
 class Home extends React.Component {
 
@@ -52,7 +53,9 @@ class Home extends React.Component {
                                 <td>{aluno.name}</td>
                                 <td>{aluno.course}</td>
                                 <td>{aluno.email}</td>
-                                <td><Button variant="warning">Editar</Button> <Button variant="danger" onClick={() => this.deletarAluno(aluno.id)}>Excluir</Button></td>
+                                <td>
+                                    <Link to={"/editar_aluno/" + aluno.id}><Button variant="warning">Editar</Button></Link> 
+                                    <Button variant="danger" onClick={() => this.deletarAluno(aluno.id)}>Excluir</Button></td>
                             </tr>
                         )}
                     </tbody>
