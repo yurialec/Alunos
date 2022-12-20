@@ -4,14 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 export const Editar = (props) => {
 
-    const { id } = useParams();
+    const { id } = useParams(props);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [course, setCourse] = useState('');
     const [active, setActive] = useState('');
 
-    // let history = useNavigate();
+    let history = useNavigate();
 
     useEffect(() => {
         const getAluno = async () => {
@@ -19,47 +19,46 @@ export const Editar = (props) => {
                 .then((response) => response.json())
                 .then((responseJson) => {
                     // console.log(responseJson);
-                    setName(responseJson.aluno?.name);
-                    setEmail(responseJson.aluno?.email);
-                    setCourse(responseJson.aluno?.course);
-                    setActive(responseJson.aluno?.active);
+                    setName(responseJson.name);
+                    setEmail(responseJson.email);
+                    setCourse(responseJson.course);
+                    setActive(responseJson.active);
                 })
         }
-
         getAluno();
     }, [id]);
 
-    // const editarAluno = async e => {
-    //     e.preventDefault();
+    const editarAluno = async e => {
+        e.preventDefault();
 
-    //     await fetch("http://localhost:8000/api/editar_aluno/" + id, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ id, name, email, course, active })
-    //     }).then((response) => response.json())
-    //         .then((responseJson) => {
-    //             console.log(responseJson);
-    //             history.push("/");
-    //         })
-    // }
+        await fetch("http://localhost:8000/api/editar_aluno/" + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id, name, email, course, active })
+        }).then((response) => response.json())
+            .then((responseJson) => {
+                // console.log(responseJson);
+                history.push("/");
+            })
+    }
 
     return (
         <div className='container'>
             <h1>Editar Aluno</h1>
-            <Form >
+            <Form onSubmit={editarAluno}>
                 <Form.Group className="mb-3">
-                    <Form.Control name="name" id="name" type="text" value={name} onChange={e => setName(e.target.name)}/>
+                    <Form.Control name="name" id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Control name="email" id="email" type="email"  value={email} onChange={e => setEmail(e.target.email)}/>
+                    <Form.Control name="email" id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Control name="course" id="course" type="text" value={course} onChange={e => setCourse(e.target.course)}/>
+                    <Form.Control name="course" id="course" type="text" value={course} onChange={e => setCourse(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="text" name="active" id="active" value={active} onChange={e => setActive(e.target.active)}/>
+                    <Form.Check type="text" name="active" id="active" onChange={e => setActive(e.target.value)} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Editar
